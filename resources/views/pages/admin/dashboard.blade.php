@@ -1,4 +1,4 @@
-@extends('root.admin')
+@extends('root.admin.admin')
 @section('title','Dashboard')
 @section('content')
     <!-- Content -->
@@ -14,8 +14,8 @@
                                 <p class="mb-4">
                                     You have done <span class="fw-bold">72%</span> more sales today. Check your new badge in
                                     your profile.
-                                </p>
 
+                                </p>
                                 <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a>
                             </div>
                         </div>

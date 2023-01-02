@@ -1,0 +1,35 @@
+.tooltip-message{
+    background-color: #08375b;
+    padding: 5px 10px;
+    border-radius: 3px;
+    position: absolute;
+    top: -40px;
+    z-index: 999;
+    display: none;
+    animation: on-hover-show 1s;
+}
+
+@keyframes on-hover-show {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.tooltip-message::after {
+    content: "";
+    height: 10px;
+    width: 10px;
+    background-color: #08375b;
+    position: absolute;
+    bottom: -5px;
+    left: 49%;
+    z-index: 900;
+    transform: rotate(45deg);
+}
+
+.tooltip-button:hover .tooltip-message {
+    display: block;
+}

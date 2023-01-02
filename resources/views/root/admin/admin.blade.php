@@ -17,6 +17,7 @@
         href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet"/>
 
+
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="{{asset('assets/vendor/fonts/boxicons.css')}}"/>
     <!-- Core CSS -->
@@ -29,6 +30,8 @@
     <link rel="stylesheet" href="{{asset('assets/vendor/libs/apex-charts/apex-charts.css')}}"/>
     <!-- preloader -->
     <link rel="stylesheet" href="{{asset('assets/css/preloader.css')}}"/>
+    <!-- toaster -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 
     <!-- Helpers -->
     <script src="{{asset('assets/vendor/js/helpers.js')}}"></script>
@@ -43,17 +46,17 @@
 <div class="layout-wrapper layout-content-navbar">
     <div class="layout-container">
         <!-- side menu -->
-        @include('root.components.sideMenu')
+        @include('root.admin.components.sideMenu')
 
         <!-- Layout container -->
         <div class="layout-page">
             <!-- nav bar -->
-            @include('root.components.navBar')
+            @include('root.admin.components.navBar')
             <!-- other contents -->
             <div class="content-wrapper">
                 @yield('content')
                 <!-- footer -->
-                @include('root.components.footer')
+                @include('root.admin.components.footer')
                 <div class="content-backdrop fade"></div>
             </div>
         </div>
@@ -73,6 +76,8 @@
 <script src="{{asset('assets/js/dashboards-analytics.js')}}"></script>
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <script src="{{asset('assets/js/preloader.js')}}"></script>
+<script src="{{asset('assets/js/ui-toasts.js')}}"></script>
+<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 <!-- Page JS -->
 @stack('pageJs')
 </body>

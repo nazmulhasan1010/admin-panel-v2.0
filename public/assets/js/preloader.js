@@ -1,5 +1,5 @@
 //  Preloader page
-$( function() {
+$(function () {
     paceOptions = {
         ajax: true,
         document: true,
@@ -9,7 +9,7 @@ $( function() {
         $('#preloader').addClass("isdone");
         $('.loading').addClass("isdone");
     });
-} );
+});
 
 
 
