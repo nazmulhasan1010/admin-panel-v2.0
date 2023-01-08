@@ -17,6 +17,8 @@
         href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet"/>
 
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/2e7d7272e8.js" crossorigin="anonymous"></script>
 
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="{{asset('assets/vendor/fonts/boxicons.css')}}"/>

@@ -12,6 +12,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet"/>
+
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/2e7d7272e8.js" crossorigin="anonymous"></script>
     <!-- toaster -->
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
@@ -41,10 +44,10 @@
                     <div class="row justify-content-center ">
                         <div class="col-lg-3 order-lg-2">
                             <div class="card-profile-image position-relative bg-danger ">
-                                <a href="#" class="profile-image-link" >
+                                <a href="#" class="profile-image-link">
                                     <img data-bs-toggle="modal" data-bs-target="#avatarUploadModal"
-                                        src="{{asset(Auth::user()->avatar==null?'assets/img/avatars/pngwing.com.png':'storage/'.Auth::user()->avatar)}}"
-                                        class="rounded-circle" alt="">
+                                         src="{{asset(Auth::user()->avatar==null?'assets/img/avatars/pngwing.com.png':'storage/'.Auth::user()->avatar)}}"
+                                         class="rounded-circle" alt="">
                                 </a>
                             </div>
                         </div>
@@ -100,6 +103,7 @@
                                 <h3 class="mb-0">My account</h3>
                             </div>
                             <div class="col-4 text-right">
+                              <button class="btn  btn-sm fs-4"><i class="fa-solid fa-gear"></i></button>
                                 <button class="btn btn-sm btn-primary user-info-edit-button">Edit Info</button>
                             </div>
                         </div>
@@ -212,25 +216,6 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group focused">
-                                            <label class="form-control-label" for="input-username">Username</label>
-                                            <input type="text" name="user-name" id="input-username"
-                                                   class="form-control form-control-alternative"
-                                                   placeholder="Username" value="{{Auth::user()->name}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label class="form-control-label" for="input-email">Email
-                                                address</label>
-                                            <input type="email" name="email" id="input-email"
-                                                   class="form-control form-control-alternative"
-                                                   placeholder="jesse@example.com" value="{{Auth::user()->email}}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-group focused">
                                             <label class="form-control-label" for="input-first-name">First
                                                 name</label>
                                             <input type="text" name="first_name" id="input-first-name"
@@ -305,6 +290,7 @@
                             </div>
                             <div class="pl-lg-4">
                                 <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="button" class="btn btn-secondary edit-cancel">Cancel</button>
                             </div>
                         </form>
                     </div>
@@ -335,26 +321,28 @@
             <div class="modal-body">
                 <div class="file-selection-area d-flex justify-content-center align-content-center">
                     <div class="container d-flex justify-content-center ">
-                            <div class="col-md-12 text-center d-flex justify-content-center" style="flex-direction: column; align-items: center">
-                                <h2>FILE UPLOAD</h2>
-                                <div class="file-drop-area d-block text-center col-md-8" >
-                                    <div class="d-flex justify-content-center image-preview-area"
-                                         style="width: 100%; display:none; margin-bottom: 10px">
-                                        <img class="imagePreView" src="" alt=""
-                                             style="height: 180px; width: 250px; margin: auto;display:none;border-radius: 5px">
-                                    </div>
-                                    <div class="drag-text">
-                                        <lavel class="choose-file-button" style="font-size: 18px">drag and drop files here</lavel>
-                                        <h4>or</h4>
-                                    </div>
-
-                                    <lavel class="choose-file-button">Choose files</lavel>
-                                    <input class="file-input" id="avatarFile" name="avatar" type="file"
-                                           accept="image/png,image/jpeg,image/gif,image/svg,image/jpg">
+                        <div class="col-md-12 text-center d-flex justify-content-center"
+                             style="flex-direction: column; align-items: center">
+                            <h2>FILE UPLOAD</h2>
+                            <div class="file-drop-area d-block text-center col-md-8">
+                                <div class="d-flex justify-content-center image-preview-area"
+                                     style="width: 100%; display:none; margin-bottom: 10px">
+                                    <img class="imagePreView" src="" alt=""
+                                         style="height: 180px; width: 250px; margin: auto;display:none;border-radius: 5px">
                                 </div>
+                                <div class="drag-text">
+                                    <lavel class="choose-file-button" style="font-size: 18px">drag and drop files here
+                                    </lavel>
+                                    <h4>or</h4>
+                                </div>
+
+                                <lavel class="choose-file-button">Choose files</lavel>
+                                <input class="file-input" id="avatarFile" name="avatar" type="file"
+                                       accept="image/png,image/jpeg,image/gif,image/svg,image/jpg">
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
@@ -394,6 +382,10 @@
     $('.user-info-edit-button').click(function () {
         $('.user-info-edit-box').css('display', 'block')
         $('.user-info-box').css('display', 'none')
+    });
+    $('.edit-cancel').click(function () {
+        $('.user-info-edit-box').css('display', 'none')
+        $('.user-info-box').css('display', 'block')
     });
 
     // drag and drop
