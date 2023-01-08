@@ -19,9 +19,7 @@ class EmailVerificationNotificationController extends Controller
         if ($request->user()->hasVerifiedEmail()) {
             return redirect()->intended(RouteServiceProvider::HOME);
         }
-
         $request->user()->sendEmailVerificationNotification();
-
         return back()->with(['message'=>'Your verification link has sent. Check your mailbox','status'=>'notify']);
     }
 }
