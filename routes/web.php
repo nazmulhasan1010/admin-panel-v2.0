@@ -14,7 +14,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/profile-update', [ProfileController::class, 'user_infoUpdate'])->name('profile.info.update');
-    Route::post('/avatar-update', [ProfileController::class, 'avatar_update'])->name('avatar.update');
+    Route::post('avatar-update', [ProfileController::class, 'avatar_update'])->name('avatar.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 

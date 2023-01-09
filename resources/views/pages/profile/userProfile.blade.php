@@ -45,9 +45,8 @@
                         <div class="col-lg-3 order-lg-2">
                             <div class="card-profile-image position-relative bg-danger ">
                                 <a href="#" class="profile-image-link">
-                                    <img data-bs-toggle="modal" data-bs-target="#avatarUploadModal"
-                                         src="{{asset(Auth::user()->avatar==null?'assets/img/avatars/pngwing.com.png':'storage/'.Auth::user()->avatar)}}"
-                                         class="rounded-circle" alt="">
+                                    <img class="fileUploadModalShow rounded-circle" data-url="/avatar-update" data-file="{{asset('storage')}}"
+                                         src="{{asset(Auth::user()->avatar==null?'assets/img/avatars/pngwing.com.png':'storage/'.Auth::user()->avatar)}}" alt="">
                                 </a>
                             </div>
                         </div>
@@ -309,50 +308,7 @@
     </div>
 </footer>
 {{--modals--}}
-<!-- Modal -->
-<div class="modal fade" id="avatarUploadModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <form class="modal-content" method="post" action="{{route('avatar.update')}}" enctype="multipart/form-data">
-            @csrf
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Profile upload</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="file-selection-area d-flex justify-content-center align-content-center">
-                    <div class="container d-flex justify-content-center ">
-                        <div class="col-md-12 text-center d-flex justify-content-center"
-                             style="flex-direction: column; align-items: center">
-                            <h2>FILE UPLOAD</h2>
-                            <div class="file-drop-area d-block text-center col-md-8">
-                                <div class="d-flex justify-content-center image-preview-area"
-                                     style="width: 100%; display:none; margin-bottom: 10px">
-                                    <img class="imagePreView" src="" alt=""
-                                         style="height: 180px; width: 250px; margin: auto;display:none;border-radius: 5px">
-                                </div>
-                                <div class="drag-text">
-                                    <lavel class="choose-file-button" style="font-size: 18px">drag and drop files here
-                                    </lavel>
-                                    <h4>or</h4>
-                                </div>
-
-                                <lavel class="choose-file-button">Choose files</lavel>
-                                <input class="file-input" id="avatarFile" name="avatar" type="file"
-                                       accept="image/png,image/jpeg,image/gif,image/svg,image/jpg">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                    Close
-                </button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
-            </div>
-        </form>
-    </div>
-</div>
+@include('pages.pageComponents.fileUploadModal')
 
 {{--toaster--}}
 <div class="bs-toast toast fade  alertToaster p-1" role="alert" aria-live="assertive" aria-atomic="true"
@@ -371,7 +327,8 @@
 <script src="{{asset('assets/vendor/libs/popper/popper.js')}}"></script>
 <script src="{{asset('assets/vendor/js/bootstrap.js')}}"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="{{asset('assets/js/fileUpload.js')}}"></script>
 <script src="{{asset('assets/js/ui-toasts.js')}}"></script>
 @if(Session::has('status'))
     <script>
@@ -386,27 +343,6 @@
     $('.edit-cancel').click(function () {
         $('.user-info-edit-box').css('display', 'none')
         $('.user-info-box').css('display', 'block')
-    });
-
-    // drag and drop
-    $('#avatarFile').change(function () {
-        var filesCount = $(this)[0].files.length;
-        if (filesCount === 1) {
-            var fileName = $(this).val().split('\\').pop();
-        } else {
-            textBox.text(filesCount + ' files selected');
-        }
-
-        // image preview
-        var reader = new FileReader();
-        // console.log($(this)[0].files[0].size)
-        reader.readAsDataURL($(this)[0].files[0]);
-        reader.onload = function (event) {
-            var source = event.target.result;
-            $('.imagePreView').attr('src', source).css('display', 'block');
-            $('.image-preview-area').css('display', 'block');
-        }
-        $('.drag-text').css('display', 'none')
     });
 </script>
 </body>

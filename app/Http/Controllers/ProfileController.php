@@ -72,14 +72,14 @@ class ProfileController extends Controller
     public function avatar_update(Request $request)
     {
         try {
-            $fileName = imageUploadWithCustomSize($request->avatar, 500, 500, 'avatar');
+            $fileName = imageUploadWithCustomSize($request->file('file'), 500, 500, 'avatar');
             if (Auth::user()->avatar != null) {
                 Storage::delete('public/'.Auth::user()->avatar);
             }
             $user = User::find(Auth::user()->id);
             $user->avatar = 'avatar/' . $fileName;
             $user->update();
-            return redirect()->back()->with(['status' => 'success', 'message' => 'Your information has updated']);
+            return ['status' => 'success', 'file' => 'avatar/' . $fileName];
         } catch (\Exception $e) {
             return redirect()->back()->with(['status' => 'error', 'message' => 'Something is wrong' . $e->getMessage()]);
         }
